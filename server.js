@@ -37,43 +37,43 @@ app.get('/vacataires', (req, res) => {
           "status": string = "en attente"
         },
         {
-          "id": 2,
-          "name": "Jean-Michel",
-          "lastName": "Bruel",
-          "abbreviation" : "JMB",
-          "department": [
+          "id": number = 2,
+          "name": string = "Jean-Michel",
+          "lastName": string = "Bruel",
+          "abbreviation" : string = "JMB",
+          "department": string = [
             "info",
             "cs"
           ],
-          "email" : "jean-michel.bruel@gmail.com",
-          "skills" : [
+          "email" : string = "jean-michel.bruel@gmail.com",
+          "skills" : string = [
             "Développement",
             "Base de données",
             "Réseaux"
           ],
-          "socials" : [
+          "socials" : string = [
             "",
             "",
             ""
           ],
-          "status": "libre"
+          "status": string = "libre"
         },
         {
-          "id": 3,
-          "name": "Esther",
-          "lastName": "Pendaries",
-          "abbreviation" : "EP",
-          "department": [
+          "id": number = 3,
+          "name": string = "Esther",
+          "lastName": string = "Pendaries",
+          "abbreviation" : string = "EP",
+          "department": string = [
             "info",
             "cs"
           ],
-          "email" : "esther.pendaries@gmail.com",
-          "skills" : [
+          "email" : string = "esther.pendaries@gmail.com",
+          "skills" : string = [
             "Développement",
             "Base de données",
             "Réseaux"
           ],
-          "status": "admis"
+          "status": string = "admis"
         }
       ],
 
@@ -86,45 +86,45 @@ app.get('/cours', (req, res) => {
   res.status(200).json({
     cours: [
       {
-        "id": 1,
-        "name": "Développement Avancée",
-        "department": "BUT2",
-        "tutors": [
+        "id": number = 1,
+        "name": string = "Développement Avancée",
+        "department": string = "BUT2",
+        "tutors": string = [
           "JMB",
           "LC"
         ]
       },
       {
-        "id": 2,
-        "name": "Archi réseau",
-        "department": "BUT3",
-        "tutors": [
+        "id": number = 2,
+        "name": string = "Archi réseau",
+        "department": string = "BUT3",
+        "tutors": string = [
           "JMB"
         ]
       },
       {
-        "id": 3,
-        "name": "Base de données",
-        "department": "BUT1",
-        "tutors": [
+        "id": number = 3,
+        "name": string = "Base de données",
+        "department": string = "BUT1",
+        "tutors": string = [
           "EP",
           "LC"
         ]
       },
       {
-        "id": 4,
-        "name": "Base de données",
-        "department": "BUT1",
-        "tutors": [
+        "id": number = 4,
+        "name": string = "Base de données",
+        "department": string = "BUT1",
+        "tutors": string = [
           "EP",
           "LC"
         ]
       },
       {
-        "id": 5 ,
-        "name": "Base de données",
-        "department": "BUT1",
-        "tutors": [
+        "id": number = 5 ,
+        "name": string = "Base de données",
+        "department": string = "BUT1",
+        "tutors": string = [
           "EP",
           "LC"
         ]
