@@ -15,26 +15,26 @@ app.get('/vacataires', (req, res) => {
     res.status(200).json({
       vacataires: [
         {
-          "id": 1,
-          "name": "Louise",
-          "lastName": "Chanouha",
-          "abbreviation" : "LC",
-          "department": [
+          "id": number = 1,
+          "name": string = "Louise",
+          "lastName": string = "Chanouha",
+          "abbreviation" : string = "LC",
+          "department": string = [
             "info",
             "cs"
           ],
-          "email" : "louis.chanouha@gmail.com",
-          "skills" : [
+          "email" : string = "louis.chanouha@gmail.com",
+          "skills" : string = [
             "Développement",
             "Base de données",
             "Réseaux"
           ],
-          "socials" : [
+          "socials" : string = [
             "",
             "",
             ""
           ],
-          "status": "en attente"
+          "status": string = "en attente"
         },
         {
           "id": 2,
