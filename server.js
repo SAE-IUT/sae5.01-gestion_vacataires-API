@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors');
 
 const app = express()
-const port = 3000
+// const port = 3000
 
 app.use(cors());
 
@@ -135,36 +135,36 @@ app.get('/cours', (req, res) => {
   )
 })
 
-app.get('/tests', (req, res) => {
-  res.status(200).json({
-    data: [
-      {
-        "id": number = 1,
-          "name": string = "Louis",
-          "lastName": string = "Chanouha",
-          "abbreviation" : string = "LC",
-          "department": string = [
-            "info",
-            "cs"
-          ],
-          "email" : string = "louis.chanouha@gmail.com",
-          "skills" : string = [
-            "Développement",
-            "Base de données",
-            "Réseaux"
-          ],
-          "socials" : string = [
-            "",
-            "",
-            ""
-          ],
-          "status": string = "en attente"
-      }
-    ]
-  })
-})
+// app.get('/tests', (req, res) => {
+//   res.status(200).json({
+//     data: [
+//       {
+//         "id": number = 1,
+//           "name": string = "Louis",
+//           "lastName": string = "Chanouha",
+//           "abbreviation" : string = "LC",
+//           "department": string = [
+//             "info",
+//             "cs"
+//           ],
+//           "email" : string = "louis.chanouha@gmail.com",
+//           "skills" : string = [
+//             "Développement",
+//             "Base de données",
+//             "Réseaux"
+//           ],
+//           "socials" : string = [
+//             "",
+//             "",
+//             ""
+//           ],
+//           "status": string = "en attente"
+//       }
+//     ]
+//   })
+// })
 
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`)
+// })
