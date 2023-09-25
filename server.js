@@ -7,7 +7,7 @@ const port = 3000
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.status(404).send("ERROR")
+  res.status(404).send("ERROR : choisissez une bonne routes")
 })
 
 // GET the tutors data
@@ -135,6 +135,10 @@ app.get('/cours', (req, res) => {
   )
 })
 
+app.get('/form', (req, res) => {
+  console.log(req.query);
+  return res.status(200).send("RECU");
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
