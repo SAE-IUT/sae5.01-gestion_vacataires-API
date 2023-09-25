@@ -16,7 +16,7 @@ app.get('/vacataires', (req, res) => {
       vacataires: [
         {
           "id": number = 1,
-          "name": string = "Louise",
+          "name": string = "Louis",
           "lastName": string = "Chanouha",
           "abbreviation" : string = "LC",
           "department": string = [
