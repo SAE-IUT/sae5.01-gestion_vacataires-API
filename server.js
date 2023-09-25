@@ -135,7 +135,7 @@ app.get('/cours', (req, res) => {
   )
 })
 
-app.get('/tests', (res, req) => {
+app.get('/tests', (req, res) => {
   res.status(200).json({
     data: [
       {
