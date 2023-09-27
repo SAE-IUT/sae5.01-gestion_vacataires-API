@@ -6,13 +6,27 @@ module.exports.getVacataires = async (req, res) => {
 }
 
 module.exports.addVacataire = async(req, res) => {
-    if(!req.body.message) {
-        res.status(400).json({message: "Aucun message ! Ajoutez en un..."})
+    // if(!req.body.message) {
+    //     res.status(400).json({message: "Aucun message ! Ajoutez en un..."})
+    // }
+
+    // const vacataire = await VacataireModel.create({
+    //     message: req.body.message,
+    //     author: req.body.author,
+    // })
+    // res.status(200).json(vacataire)
+    if(!req.body.name) {
+        res.status(400).json({erreur: "Aucun message ! Ajoutez en un..."})
     }
 
     const vacataire = await VacataireModel.create({
-        message: req.body.message,
-        author: req.body.author,
+        // message: req.body.message,
+        // author: req.body.author,
+
+        name: req.body.name,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        status: 'en attente'
     })
     res.status(200).json(vacataire)
 }
@@ -52,7 +66,7 @@ module.exports.affecteVacataire = async (req, res) => {
     try {
         await VacataireModel.findByIdAndUpdate(
             req.params.id,
-            {$addToSet: {likers: req.body.userId}},
+            {status: "affecter"},
             {new: true }
         ).then((data) => res.status(200).send(data))
     } catch (err) {
