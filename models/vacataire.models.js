@@ -25,7 +25,7 @@ const vacataireSchema = mongoose.Schema(
       email: {
         type: String,
         required: true
-      },
+      }
 
 
 
