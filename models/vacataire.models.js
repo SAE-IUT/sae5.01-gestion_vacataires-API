@@ -2,28 +2,28 @@ const mongoose = require("mongoose")
 
 const vacataireSchema = mongoose.Schema(
     {
-      // message: {
-      //     type: String,
-      //     required: true
-      // },
-      // author: {
-      //     type: String
-      // },
-      // likers: {
-      //     type: [String]
-      // }
-
-
-      name: {
-        type: String,
-        required: true
+      message: {
+          type: String,
+          required: true
       },
-      lastName: {
-        type: String,
+      author: {
+          type: String
       },
-      email: {
-        type: String,
+      likers: {
+          type: [String]
       }
+
+
+      // name: {
+      //   type: String,
+      //   required: true
+      // },
+      // lastName: {
+      //   type: String,
+      // },
+      // email: {
+      //   type: String,
+      // }
 
 
 
