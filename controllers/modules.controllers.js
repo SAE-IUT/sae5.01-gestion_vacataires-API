@@ -1,85 +1,52 @@
-const VacataireModel = require('../models/vacataire.models')
+const ModuleModel = require('../models/module.models')
 
-module.exports.getVacataires = async (req, res) => {
-    const vacataire = await VacataireModel.find()
-    res.status(200).json(vacataire)
+module.exports.getModules = async (req, res) => {
+    const module = await ModuleModel.find()
+    res.status(200).json(module)
 }
 
-module.exports.addVacataire = async(req, res) => {
+module.exports.addModule = async(req, res) => {
     if(!req.body.name) {
         res.status(400).json({message: "Aucun message ! Ajoutez en un..."})
     }
 
-    const vacataire = await VacataireModel.create({
+    const module = await ModuleModel.create({
         name: req.body.name,
-        lastName: req.body.lastName,
-        email: req.body.email,
+        name_reduit: req.body.name_reduit,
+        color_hexa: req.body.color_hexa,
+        department: req.body.department,
+        matiere: req.body.matiere,
     })
-    res.status(200).json(vacataire)
-
-    // if(!req.body.name) {
-    //     res.status(400).json({message: "Aucun message ! Ajoutez en un..."})
-    // }
-
-    // const vacataire = await VacataireModel.create({
-    //     name: req.body.name,
-    //     lastName: req.body.lastName,
-    //     email: req.body.email,
-    // })
-    // res.status(200).json(vacataire)
+    res.status(200).json(module)
 }
 
-module.exports.editVacataire = async (req, res) => {
-    const vacataire = await VacataireModel.findById(req.params.id)
+module.exports.editModule = async (req, res) => {
+    const module = await ModuleModel.findById(req.params.id)
 
-    if(!vacataire) {
+    if(!module) {
         res.status(400).json({
-            message: "Ce vacataire n'existe pas"
+            message: "Ce module n'existe pas"
         })
     }
 
-    const updateVacataire = await VacataireModel.findByIdAndUpdate(
-        vacataire,
+    const updateModule = await ModuleModel.findByIdAndUpdate(
+        module,
         req.body,
         {new: true}
     )
 
-    res.status(200).json(updateVacataire)
+    res.status(200).json(updateModule)
 }
 
-module.exports.deleteVacataire = async (req, res) => {
-    const vacataire = await VacataireModel.findById(req.params.id)
+module.exports.deleteModule = async (req, res) => {
+    const module = await ModuleModel.findById(req.params.id)
 
-    if(!vacataire) {
+    if(!module) {
         res.status(400).json({
-            message: "Ce vacataire n'existe pas"
+            message: "Ce module n'existe pas"
         })
     }
 
-    await vacataire.deleteOne({ _id: req.params.id })
-    res.status(200).json("Message supprimé " + vacataire)
-}
-
-module.exports.affecteVacataire = async (req, res) => {
-    try {
-        await VacataireModel.findByIdAndUpdate(
-            req.params.id,
-            {status: "affecter"},
-            {new: true }
-        ).then((data) => res.status(200).send(data))
-    } catch (err) {
-        res.status(400).json(err)
-    }
-}
-
-module.exports.desaffecteVacataire = async (req, res) => {
-    try {
-        await VacataireModel.findByIdAndUpdate(
-            req.params.id,
-            {$pull: {likers: req.body.userId}},
-            {new: true }
-        ).then((data) => res.status(200).send(data))
-    } catch (err) {
-        res.status(400).json(err)
-    }
+    await module.deleteOne({ _id: req.params.id })
+    res.status(200).json("Message supprimé " + module)
 }
