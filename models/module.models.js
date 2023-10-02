@@ -12,10 +12,10 @@ const moduleSchema = mongoose.Schema(
           type: String,
       },
       departement: {
-          type: [String]
+          type: [String],
       },
       matiere: {
-          type: String
+          type: String,
       },
     }
 )
