@@ -8,17 +8,20 @@ const vacataireSchema = mongoose.Schema(
       lastName: {
           type: String,
       },
-      email: {
-          type: String,
-      },
       department: {
-          type: [String]
+          type: String
       },
       skills: {
           type: [String]
       },
-      socials: {
-          type: [String]
+      email: {
+        type: String,
+      },
+      linkedin: {
+        type: String
+      },
+      discord: {
+        type: String
       },
       status: {
           type: String,
