@@ -14,7 +14,7 @@ module.exports.addModule = async(req, res) => {
         name: req.body.name,
         name_reduit: req.body.name_reduit,
         color_hexa: req.body.color_hexa,
-        department: req.body.department,
+        departement: req.body.departement,
         matiere: req.body.matiere,
     })
     res.status(200).json(module)

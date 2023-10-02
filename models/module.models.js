@@ -11,7 +11,7 @@ const moduleSchema = mongoose.Schema(
       color_hexa: {
           type: String,
       },
-      department: {
+      departement: {
           type: [String]
       },
       matiere: {
