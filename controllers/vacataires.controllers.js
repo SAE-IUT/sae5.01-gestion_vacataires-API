@@ -7,7 +7,7 @@ module.exports.getVacataires = async (req, res) => {
 
 module.exports.addVacataire = async(req, res) => {
     // if(!req.body.name) {
-    //     res.status(400).json({message: "Aucun message ! Ajoutez en un..."})
+    //      res.status(400).json({message: "Aucun message ! Ajoutez en un..."})
     // }
 
     const vacataire = await VacataireModel.create({
@@ -16,20 +16,10 @@ module.exports.addVacataire = async(req, res) => {
         department: req.body.department,
         email: req.body.email,
         linkedin: req.body.linkedin,
-        discord: req.body.disord,
+        discord: req.body.discord,
     })
     res.status(200).json(vacataire)
 
-    // if(!req.body.name) {
-    //     res.status(400).json({message: "Aucun message ! Ajoutez en un..."})
-    // }
-
-    // const vacataire = await VacataireModel.create({
-    //     name: req.body.name,
-    //     lastName: req.body.lastName,
-    //     email: req.body.email,
-    // })
-    // res.status(200).json(vacataire)
 }
 
 module.exports.editVacataire = async (req, res) => {
