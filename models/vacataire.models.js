@@ -11,9 +11,9 @@ const vacataireSchema = mongoose.Schema(
       department: {
           type: String
       },
-      // skills: {
-      //     type: [String]
-      // },
+      skills: {
+          type: [String]
+      },
       email: {
         type: String,
       },
@@ -23,9 +23,9 @@ const vacataireSchema = mongoose.Schema(
       discord: {
         type: String
       },
-      // status: {
-      //     type: String,
-      // },
+      status: {
+          type: String,
+      },
     }
 )
 
