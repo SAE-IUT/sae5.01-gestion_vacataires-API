@@ -3,25 +3,25 @@ const mongoose = require("mongoose")
 const vacataireSchema = mongoose.Schema(
     {
       name: {
-        type: [String],
+        type: String,
       },
       lastName: {
           type: String,
       },
-      department: {
+      phone: {
           type: String
-      },
-      skills: {
-          type: [String]
       },
       email: {
         type: String,
       },
-      linkedin: {
+      github: {
         type: String
       },
-      discord: {
-        type: String
+      skills: {
+        type: [String]
+      },
+      modules: {
+        type: [String]
       },
       status: {
           type: String,
