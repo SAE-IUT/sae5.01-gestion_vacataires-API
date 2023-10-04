@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const vacataireSchema = mongoose.Schema(
     {
       name: {
-        type: String,
+        type: [String],
       },
       lastName: {
           type: String,
