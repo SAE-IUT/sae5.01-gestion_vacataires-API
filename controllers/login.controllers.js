@@ -35,4 +35,3 @@ module.exports.getUser = async (req, res) => {
 }
 
 
-router.get("getUser", getUser )
