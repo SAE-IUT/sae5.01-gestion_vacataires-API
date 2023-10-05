@@ -1,0 +1,19 @@
+== Instructions de démarrage (node js)
+
+----
+npm install
+----
+
+----
+npm start
+----
+
+== Instructions de démarrage (Docker)
+
+----
+docker build -t saeapi .
+----
+
+----
+docker run -p 3000:3000 saeapi
+----
