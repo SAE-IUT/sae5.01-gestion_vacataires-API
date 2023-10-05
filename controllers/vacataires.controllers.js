@@ -1,7 +1,10 @@
 const VacataireModel = require('../models/vacataire.models')
+const mongoose = require("mongoose");
 
 module.exports.getVacataires = async (req, res) => {
+    console.log("vacataires request recieved")
     const vacataire = await VacataireModel.find()
+    console.log("done")
     res.status(200).json(vacataire)
 }
 
