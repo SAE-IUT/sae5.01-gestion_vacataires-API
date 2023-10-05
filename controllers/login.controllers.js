@@ -3,18 +3,20 @@ const bcrypt = require("bcryptjs");
 
 module.exports.getPasswordValid = async (req, res) => {
     try {
-        let pwd
+        const pass = req.body.password 
+        let pwd;
         bcrypt
             .genSalt()
             .then(salt => {
                 console.log('Salt: ', salt)
-                return bcrypt.hash(req.body.password, salt)
+                return bcrypt.hash(pass, salt)
             })
             .then(hash => {
                 pwd = hash
             })
             .catch(err => console.error(err.message))
-        const user = await loginModels.findOne({ pseudo: req.body.pseudo, password: pwd });
+
+        const user = await loginModels.findOne({ pseudo: req.body.pseudo, password: pass });
 
         if (user) {
             res.send("Success, hash: " + pwd );
