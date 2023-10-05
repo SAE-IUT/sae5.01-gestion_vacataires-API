@@ -16,21 +16,23 @@ module.exports.getPasswordValid = async (req, res) => {
 }
 
 module.exports.getUser = async (req, res) => {
-    const { login, pass} = req.query;
+    const { pseudo, password} = req.body;
 
+
+    
     try {
-        const user= await loginModels.find({
-            login: login,
-            pass: pass
+        
+        const user= await loginModels.findOne({
+            pseudo: pseudo,
+            password: password
         });
-
         if (user.length > 0) {
             res.status(200).json(user);
         } else {
             res.status(404).json({ message: "Aucun user trouvé avec ce login et pass." });
         }
     } catch (error) {
-        res.status(500).json({ error: "Erreur interne du serveur." });
+        res.status(500).json({message: "message"});
     }
 }
 
