@@ -16,7 +16,7 @@ module.exports.getPasswordValid = async (req, res) => {
             })
             .catch(err => console.error(err.message))
 
-        const user = await loginModels.findOne({ pseudo: req.body.pseudo, password: pass });
+        const user = await loginModels.findOne({ pseudo: req.body.pseudo, password: pwd });
 
         if (user) {
             res.send("Success, hash: " + pwd );
