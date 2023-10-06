@@ -15,9 +15,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/vacataires", require("./routes/vacataires.routes"));
-app.use("/modules", require("./routes/modules.routes"));
-app.use("/connexion", require("./routes/connexion.routes"));
+app.use("/api/vacataires", require("./routes/vacataires.routes"));
+app.use("/api/modules", require("./routes/modules.routes"));
+app.use("/api/connexion", require("./routes/connexion.routes"));
 
 // Lancer le serveur
 app.listen(port, () => console.log("Le serveur a démarré au port  " + port));
