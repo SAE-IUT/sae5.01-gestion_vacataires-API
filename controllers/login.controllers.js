@@ -3,26 +3,24 @@ const bcrypt = require("bcryptjs");
 
 module.exports.getPasswordValid = async (req, res) => {
     try {
+
         const pass = req.body.password 
-        let pwd;
-        bcrypt
-            .genSalt()
-            .then(salt => {
-                console.log('Salt: ', salt)
-                return bcrypt.hash(pass, salt)
-            })
-            .then(hash => {
-                pwd = hash
-            })
-            .catch(err => console.error(err.message))
-
-        const user = await loginModels.findOne({ pseudo: req.body.pseudo, password: pwd });
-
+        const user = await loginModels.findOne({ pseudo: req.body.pseudo });
+    
+        
         if (user) {
-            res.send("Success, hash: " + pwd );
-        } else {
-            res.send("Not");
+            bcrypt.compare(pass,user.password,function(err, result){
+                if(result){
+                    res.send("Connected" + pass + " / " + user.password+' '+err )
+                }else {
+                    res.send("Not connected")
+                }
+            })
+       } else {
+            res.send("Not" + pwd );
         }
+    
+    
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
     }
