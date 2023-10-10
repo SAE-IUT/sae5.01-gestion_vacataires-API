@@ -11,13 +11,23 @@ module.exports.getPasswordValid = async (req, res) => {
         if (user) {
             bcrypt.compare(pass,user.password,function(err, result){
                 if(result){
-                    res.send("Connected" + pass + " / " + user.password+' '+err )
+                    const token    = jwt.sign({
+                        user: user
+                    },
+                    SECRET_KEY,
+                    {
+                        expiresIn: expireIn
+                    });
+
+                    res.header('Authorization', 'Bearer ' + token);
+
+                    res.status(200).json({msg:"Valid password"});
                 }else {
-                    res.send("Not connected")
+                    res.status(500).json({ error: "Credentials not valid" });
                 }
             })
        } else {
-            res.send("Not" + pwd );
+        res.status(404).json({ error: "User not exist" });
         }
     
     
