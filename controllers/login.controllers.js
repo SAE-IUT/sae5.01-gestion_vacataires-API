@@ -1,5 +1,6 @@
 const loginModels = require("../models/login.models")
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 
 module.exports.getPasswordValid = async (req, res) => {
     try {
@@ -11,17 +12,20 @@ module.exports.getPasswordValid = async (req, res) => {
         if (user) {
             bcrypt.compare(pass,user.password,function(err, result){
                 if(result){
-                    const token    = jwt.sign({
+
+                    const token = jwt.sign({
                         user: user
                     },
-                    SECRET_KEY,
+                    process.env.SECRET_KEY,
                     {
-                        expiresIn: expireIn
+                        expiresIn: 24 * 60 * 60
                     });
+                    
+
 
                     res.header('Authorization', 'Bearer ' + token);
 
-                    res.status(200).json({msg:"Valid password"});
+                    res.status(200).json({msg:token});
                 }else {
                     res.status(500).json({ error: "Credentials not valid" });
                 }
