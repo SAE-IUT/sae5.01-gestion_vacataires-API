@@ -1,17 +1,19 @@
 const express = require("express")
 const { getVacataires, addVacataire, editVacataire, deleteVacataire, affecteVacataire, desaffecteVacataire } = require("../controllers/vacataires.controllers")
 const router = express.Router()
+const security = require('../middlewares/security');
 
-router.get("/", getVacataires)
 
-router.post("/newVacataire", addVacataire)
+router.get("/",security.checkJWT, getVacataires)
 
-router.put("/editVacataire/:id", editVacataire)
+router.post("/newVacataire",security.checkJWT, addVacataire)
 
-router.delete("/deleteVacataire/:id", deleteVacataire)
+router.put("/editVacataire/:id",security.checkJWT, editVacataire)
 
-router.patch("/affecteVacataire/:id", affecteVacataire)
+router.delete("/deleteVacataire/:id",security.checkJWT, deleteVacataire)
 
-router.patch("/desaffecteVacataire/:id", desaffecteVacataire)
+router.patch("/affecteVacataire/:id",security.checkJWT ,affecteVacataire)
+
+router.patch("/desaffecteVacataire/:id",security.checkJWT, desaffecteVacataire)
 
 module.exports = router
