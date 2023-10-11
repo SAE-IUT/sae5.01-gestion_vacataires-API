@@ -4,7 +4,7 @@ const router = express.Router()
 const security = require('../middlewares/security');
 
 
-router.get("/", getVacataires)
+router.get("/",security.checkJWT, getVacataires)
 
 router.post("/newVacataire",security.checkJWT, addVacataire)
 

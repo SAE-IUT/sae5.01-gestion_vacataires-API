@@ -4,7 +4,7 @@ const router = express.Router()
 const security = require('../middlewares/security');
 
 
-router.get("/", getModules)
+router.get("/",security.checkJWT, getModules)
 
 router.post("/newModule",security.checkJWT, addModule)
 

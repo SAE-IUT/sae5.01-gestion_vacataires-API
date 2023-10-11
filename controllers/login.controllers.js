@@ -7,7 +7,6 @@ module.exports.getPasswordValid = async (req, res) => {
 
         const pass = req.body.password 
         const user = await loginModels.findOne({ pseudo: req.body.pseudo });
-    
         
         if (user) {
             bcrypt.compare(pass,user.password,function(err, result){
@@ -20,9 +19,6 @@ module.exports.getPasswordValid = async (req, res) => {
                     {
                         expiresIn: 24 * 60 * 60
                     });
-                    
-
-
                     res.header('Authorization', 'Bearer ' + token);
 
                     res.status(200).json({msg:token});
@@ -33,8 +29,7 @@ module.exports.getPasswordValid = async (req, res) => {
        } else {
         res.status(404).json({ error: "User not exist" });
         }
-    
-    
+
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
     }
