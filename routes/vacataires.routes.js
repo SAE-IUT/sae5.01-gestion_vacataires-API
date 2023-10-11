@@ -1,5 +1,5 @@
 const express = require("express")
-const { getVacataires, addVacataire, editVacataire, deleteVacataire, affecteVacataire, desaffecteVacataire } = require("../controllers/vacataires.controllers")
+const { getVacataires, addVacataire, editVacataire, deleteVacataire, affecterVacataire, desaffecterVacataire } = require("../controllers/vacataires.controllers")
 const router = express.Router()
 
 router.get("/", getVacataires)
@@ -10,8 +10,8 @@ router.put("/editVacataire/:id", editVacataire)
 
 router.delete("/deleteVacataire/:id", deleteVacataire)
 
-router.patch("/affecteVacataire/:id", affecteVacataire)
+router.patch("/affecterVacataire/:id", affecterVacataire)
 
-router.patch("/desaffecteVacataire/:id", desaffecteVacataire)
+router.patch("/desaffecterVacataire/:id", desaffecterVacataire)
 
 module.exports = router
