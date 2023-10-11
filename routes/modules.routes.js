@@ -1,13 +1,15 @@
 const express = require("express")
 const { getModules, addModule, editModule, deleteModule } = require("../controllers/modules.controllers")
 const router = express.Router()
+const security = require('../middlewares/security');
 
-router.get("/", getModules)
 
-router.post("/newModule", addModule)
+router.get("/",security.checkJWT, getModules)
 
-router.put("/editModule/:id", editModule)
+router.post("/newModule",security.checkJWT, addModule)
 
-router.delete("/deleteModule/:id", deleteModule)
+router.put("/editModule/:id",security.checkJWT, editModule)
+
+router.delete("/deleteModule/:id",security.checkJWT, deleteModule)
 
 module.exports = router

@@ -1,28 +1,35 @@
 const loginModels = require("../models/login.models")
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 
 module.exports.getPasswordValid = async (req, res) => {
     try {
+
         const pass = req.body.password 
-        let pwd;
-        bcrypt
-            .genSalt()
-            .then(salt => {
-                console.log('Salt: ', salt)
-                return bcrypt.hash(pass, salt)
-            })
-            .then(hash => {
-                pwd = hash
-            })
-            .catch(err => console.error(err.message))
-
-        const user = await loginModels.findOne({ pseudo: req.body.pseudo, password: pwd });
-
+        const user = await loginModels.findOne({ pseudo: req.body.pseudo });
+        
         if (user) {
-            res.send("Success, hash: " + pwd );
-        } else {
-            res.send("Not");
+            bcrypt.compare(pass,user.password,function(err, result){
+                if(result){
+
+                    const token = jwt.sign({
+                        user: user
+                    },
+                    process.env.SECRET_KEY,
+                    {
+                        expiresIn: 24 * 60 * 60
+                    });
+                    res.header('Authorization', 'Bearer ' + token);
+
+                    res.status(200).json({msg:token});
+                }else {
+                    res.status(500).json({ error: "Credentials not valid" });
+                }
+            })
+       } else {
+        res.status(404).json({ error: "User not exist" });
         }
+
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error" });
     }
