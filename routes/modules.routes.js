@@ -1,15 +1,14 @@
-const express = require("express")
-const { getModules, addModule, editModule, deleteModule } = require("../controllers/modules.controllers")
-const router = express.Router()
+const express = require("express");
+const { getModules, addModule, editModule, deleteModule } = require("../controllers/modules.controllers");
+const router = express.Router();
 const security = require('../middlewares/security');
 
+router.get("/", security.checkJWT, getModules);
 
-router.get("/",security.checkJWT, getModules)
+router.post("/newModule", security.checkJWT, addModule);
 
-router.post("/newModule",security.checkJWT, addModule)
+router.put("/editModule/:id", security.checkJWT, editModule);
 
-router.put("/editModule/:id",security.checkJWT, editModule)
+router.delete("/deleteModule/:id", security.checkJWT, deleteModule);
 
-router.delete("/deleteModule/:id",security.checkJWT, deleteModule)
-
-module.exports = router
+module.exports = router;
