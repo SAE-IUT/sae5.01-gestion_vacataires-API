@@ -1,9 +1,13 @@
 const express = require("express");
-const { getPasswordValid, getUser } = require("../controllers/login.controllers");
+const { login, getUser, putNewPassword } = require("../controllers/login.controllers");
 const router = express.Router();
+const security = require('../middlewares/security');
 
-router.post("/", getPasswordValid);
+router.post("/", login);
 
 router.post("/getUser", getUser);
+
+router.post("/changePassword",security.checkJWT, putNewPassword);
+
 
 module.exports = router;
