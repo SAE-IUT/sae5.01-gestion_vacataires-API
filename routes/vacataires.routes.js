@@ -1,19 +1,18 @@
-const express = require("express")
-const { getVacataires, addVacataire, editVacataire, deleteVacataire, affecteVacataire, desaffecteVacataire } = require("../controllers/vacataires.controllers")
-const router = express.Router()
+const express = require("express");
+const { getVacataires, addVacataire, editVacataire, deleteVacataire, affecterVacataire, desaffecterVacataire } = require("../controllers/vacataires.controllers");
+const router = express.Router();
 const security = require('../middlewares/security');
 
+router.get("/",security.checkJWT, getVacataires);
 
-router.get("/",security.checkJWT, getVacataires)
+router.post("/newVacataire",security.checkJWT, addVacataire);
 
-router.post("/newVacataire",security.checkJWT, addVacataire)
+router.put("/editVacataire/:id",security.checkJWT, editVacataire);
 
-router.put("/editVacataire/:id",security.checkJWT, editVacataire)
+router.delete("/deleteVacataire/:id", security.checkJWT, deleteVacataire);
 
-router.delete("/deleteVacataire/:id",security.checkJWT, deleteVacataire)
+router.patch("/affecterVacataire/:id", security.checkJWT, affecterVacataire);
 
-router.patch("/affecteVacataire/:id",security.checkJWT ,affecteVacataire)
+router.patch("/desaffecterVacataire/:id", security.checkJWT, desaffecterVacataire);
 
-router.patch("/desaffecteVacataire/:id",security.checkJWT, desaffecteVacataire)
-
-module.exports = router
+module.exports = router;
