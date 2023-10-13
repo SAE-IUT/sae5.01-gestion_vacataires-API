@@ -25,21 +25,21 @@ module.exports.addVacataire = async(req, res) => {
 }
 
 module.exports.editVacataire = async (req, res) => {
-    const vacataire = await VacataireModel.findById(req.params.id)
+  const vacataire = await VacataireModel.findById(req.params.id)
 
-    if(!vacataire) {
-        res.status(400).json({
-            message: "Ce vacataire n'existe pas"
-        })
-    }
+  if(!vacataire) {
+      res.status(400).json({
+          message: "Ce vacataire n'existe pas"
+      })
+  }
 
-    const updateVacataire = await VacataireModel.findByIdAndUpdate(
-        vacataire,
-        req.body,
-        {new: true}
-    )
+  const updateVacataire = await VacataireModel.findByIdAndUpdate(
+      vacataire,
+      req.body,
+      {new: true}
+  )
 
-    res.status(200).json(updateVacataire)
+  res.status(200).json(updateVacataire)
 }
 
 module.exports.deleteVacataire = async (req, res) => {
@@ -63,7 +63,7 @@ module.exports.affecterVacataire = async (req, res) => {
       // Mettez à jour le statut du vacataire
       const updatedVacataire = await VacataireModel.findByIdAndUpdate(
         id,
-        { status: "admis" },
+        { status: "affecté" },
         { new: true }
       );
   
@@ -83,25 +83,34 @@ module.exports.affecterVacataire = async (req, res) => {
     }
   };
 
-  module.exports.desaffecterVacataire = async (req, res) => {
+module.exports.desaffecterVacataire = async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.params; 
       const { nomCours } = req.body;
+      
   
-      const updatedVacataire = await VacataireModel.findByIdAndUpdate(
-        id,
-        { $pull: { modules: nomCours } }, // Retirez le cours de la liste des modules
-        { status: "en attente" },
-        { new: true }
-      );
-  
+      // Mettez à jour le statut du vacataire
+      const updatedVacataire = await VacataireModel.findById(id);
+
+      // Ajoutez le cours à la liste des modules du vacataire
+      updatedVacataire.modules.pull(nomCours);
+
+      if (updatedVacataire.modules.length === 0) {
+        updatedVacataire.status = "en attente"
+      }
+
       if (!updatedVacataire) {
         return res.status(404).json({ message: 'Vacataire non trouvé' });
       }
   
-      res.status(200).json(updatedVacataire);
+      
+  
+      // Sauvegardez les modifications
+      const savedVacataire = await updatedVacataire.save();
+  
+      res.status(200).json(savedVacataire);
     } catch (err) {
       res.status(400).json(err);
     }
-  };
+};
   
