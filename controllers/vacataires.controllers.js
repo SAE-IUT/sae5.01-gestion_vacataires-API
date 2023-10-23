@@ -19,7 +19,9 @@ module.exports.addVacataire = async(req, res) => {
         github: req.body.github,
         skills: req.body.skills,
         modules: req.body.modules,
+        status : "Non Affecté",
     })
+    
     res.status(200).json(vacataire)
 
 }
