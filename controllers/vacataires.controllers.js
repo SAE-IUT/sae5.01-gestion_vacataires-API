@@ -20,6 +20,7 @@ module.exports.addVacataire = async(req, res) => {
         skills: req.body.skills,
         modules: req.body.modules,
         status : "Non Affecté",
+        profilePicture: req.body.profilePicture
     })
     
     res.status(200).json(vacataire)
