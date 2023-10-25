@@ -14,5 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/vacataires", require("./routes/vacataires.routes"));
 app.use("/api/modules", require("./routes/modules.routes"));
 app.use("/api/connexion", require("./routes/connexion.routes"));
+app.use("/api/images", require("./routes/images.routes"));
 
 module.exports = app;
