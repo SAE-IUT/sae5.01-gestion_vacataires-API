@@ -1,6 +1,5 @@
 const express = require("express");
 const multer = require("multer")
-// const { login, getUser, putNewPassword } = require("../controllers/images.controllers");
 const router = express.Router();
 const security = require('../middlewares/security');
 
